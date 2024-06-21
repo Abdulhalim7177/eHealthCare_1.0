@@ -46,7 +46,7 @@ $(document).ready(function() {
                 localStorage.setItem('user', JSON.stringify(response.data));
 
                 // window.location.href = `${app.url}/dashboard.html`;
-                app.location("/dashboard.html");
+                app.location("/patients/index.html", app.offline);
 
                 // console.log(response);
                 // console.log(response.success);
