@@ -13,8 +13,14 @@ app.apiUrl = "http://127.0.0.1:8000/api";
 app.token = localStorage.getItem('token');
 app.user = localStorage.getItem('user');
 
+app.offline = true;
 app.log = ((content) => { return console.log(content); });
-app.location = ((location) => { return window.location.href = `${app.url}${location}` });
+app.location = ((location, offline = false) => { 
+    if(offline){
+        return window.location.href = `.${location}` 
+    }
+    return window.location.href = `${app.url}${location}` 
+});
 
 
 // {
