@@ -5,11 +5,14 @@ console.log(`${app.url}/register.html`);
 $(document).ready(function() {
 
     console.log(`${app.apiUrl}/register`);
-    localStorage.setItem('token', "3|uUtl4sCnDBPMb4HnYeUHLtNwP8WLKsgxY8wE7D1reeed97e7");
+    localStorage.setItem('token', "");
 
 
     $('#registerForm').on('submit', function(event) {
         event.preventDefault();
+
+        // Show the spinner
+        $('.overlay').show(); 
 
         let firstName = $('#firstName').val();
         let lastName = $('#lastName').val();
@@ -66,12 +69,10 @@ $(document).ready(function() {
 
                 console.log(JSON.stringify(error.responseJSON.message));
 
-
-
-
-
-
-
+            },
+            complete: function() {
+                // Hide the spinner
+                $('.overlay').hide(); 
             }
         });
     });
