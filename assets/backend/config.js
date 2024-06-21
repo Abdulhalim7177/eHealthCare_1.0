@@ -13,11 +13,14 @@ app.apiUrl = "http://127.0.0.1:8000/api";
 app.token = localStorage.getItem('token');
 app.user = localStorage.getItem('user');
 
+app.log = ((content) => { return console.log(content); });
+app.location = ((location) => { return window.location.href = `${app.url}${location}` });
+
 
 // {
 //     "success": "true",
 //     "message": "User account created successfully",
-//     "user": {
+//     "data": {
 //         "name": "abdulsalam [object Object]",
 //         "email": "abdulsalam2@gmail.com",
 //         "updated_at": "2024-06-21T13:52:46.000000Z",
