@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="index-page">
+<body class="index-page" id="hero" >
 
   <header id="header" class="header sticky-top">
 
@@ -53,6 +53,9 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <img src="assets/img/logo13.png" alt="eHealthCare Logo">
+          <span class="more-btn title">
+            eHealthCare
+          </span>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -66,16 +69,17 @@
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-        <div class="dropdown cta-btn d-sm-block dropdown">
+        <div class="dropdown cta-btn d-sm-block">
           <a class="text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Login / Sign Up
           </a>
         
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="/admin/index.html">Admin Login</a></li>
-            <li><a class="dropdown-item" href="/pharmacist/index.html">Pharmcist Login</a></li>
-            <li><a class="dropdown-item" href="/doctor/index.html">Health Personnel Login</a></li>
-            <li><a class="dropdown-item" href="sign up.html">User/Patient</a></li>
+            <li><a class="dropdown-item" href="register.html?role=patients">Users/Patients</a></li>
+            <li><a class="dropdown-item" href="register.html?role=medical-officers">Medical Officers</a></li>
+            <li><a class="dropdown-item" href="register.html?role=doctors">Doctors</a></li>
+            <li><a class="dropdown-item" href="register.html?role=pharmacies">Pharmacies</a></li>
+            <li><a class="dropdown-item" href="register.html?role=hospitals">Hospitals</a></li>
           </ul>
         </div>
       </div>
@@ -87,16 +91,16 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section">
+    <section class="hero section">
 
       <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
 
       <div class="container position-relative">
 
-        <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-          <h1 class="text-center">Welcome To</h1>
-          <h2 class="logo-text text-center">eHealthCare</h2>
-          <p>Bridging the gap between urban and rural health</p>
+        <div class="text-left welcome position-relative" data-aos="fade-down" data-aos-delay="100">
+          <h1 class="">Welcome To</h1>
+          <h2 class="logo-text">eHealthCare</h2>
+          <p class="">Bridging the gap between rural and urban healthcare!</p>
         </div><!-- End Welcome -->
 
         <div class="content row gy-4">
@@ -153,7 +157,8 @@
       </div>
 
 
-    </section><!-- /Hero Section -->
+    </section>
+    <!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -201,7 +206,8 @@
 
       </div>
 
-    </section><!-- /About Section -->
+    </section>
+    <!-- /About Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section">
@@ -246,7 +252,8 @@
 
       </div>
 
-    </section><!-- /Stats Section -->
+    </section>
+    <!-- /Stats Section -->
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -255,14 +262,15 @@
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
         <p>What we do at eHealthCare</p>
-      </div><!-- End Section Title -->
+      </div>
+      <!-- End Section Title -->
 
       <div class="container">
 
         <div class="row gy-4">
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
+            <div class="service-item position-relative">
               <div class="icon">
                 <i class="fas fa-heartbeat"></i>
               </div>
@@ -394,6 +402,8 @@
       </div>
 
     </section>
+
+    
  <!-- Departments Section -->
     <section id="departments" class="departments section">
 
@@ -421,50 +431,50 @@
               </li>
             </ul>
           </div>
-          <div class="col-lg-9 mt-4 mt-lg-0">
+          <div class="mt-4 col-lg-9 mt-lg-0">
             <div class="tab-content">
               <div class="tab-pane active show" id="departments-tab-1">
                 <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <div class="order-2 col-lg-8 details order-lg-1">
                     <h3>Maternity Health Care:</h3>
                     <p class="fst-italic">Mother's Health: Monitoring recovery from childbirth, managing postpartum depression, and addressing any complications. Newborn Care: Initial screenings, vaccinations, and breastfeeding support.
                       more frequent monitoring, specialized care plans, and possibly the involvement of maternal-fetal medicine specialists.</p>
                   </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <div class="order-1 text-center col-lg-4 order-lg-2">
                     <img src="assets/img/departments-4.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="departments-tab-2">
                 <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <div class="order-2 col-lg-8 details order-lg-1">
                     <h3>Pediatric Health Care<h3>
                     <p class="fst-italic">Regular well-child visits are scheduled at specific intervals (e.g., 2 weeks, 2 months, 6 months, 1 year) to monitor growth and development, administer immunizations, conduct developmental screenings, and provide anticipatory guidance. Pediatric care addresses acute illnesses like respiratory infections and gastroenteritis, as well as chronic conditions such as asthma, allergies, diabetes, and congenital disorders.</p>
                   </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <div class="order-1 text-center col-lg-4 order-lg-2">
                     <img src="assets/img/departments-1.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="departments-tab-3">
                 <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <div class="order-2 col-lg-8 details order-lg-1">
                     <h3>Emergency Care</h3>
                     <p class="fst-italic">Emergency care is crucial for addressing acute medical conditions, injuries, and life-threatening situations. This includes services provided in emergency rooms (ER), urgent care centers, and by emergency medical services (EMS).</p>
                   </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <div class="order-1 text-center col-lg-4 order-lg-2">
                     <img src="assets/img/departments-2.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
               <div class="tab-pane" id="departments-tab-4">
                 <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <div class="order-2 col-lg-8 details order-lg-1">
                     <h3>Consultation Services</h3>
                     <p class="fst-italic">Telehealth Consultations:
                       Telehealth consultations provide remote access to healthcare professionals, allowing for diagnosis, treatment, and follow-up care without the need for in-person visits. This is particularly beneficial for patients in rural areas or with mobility issues.</p>
                   </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <div class="order-1 text-center col-lg-4 order-lg-2">
                     <img src="assets/img/departments-3.jpg" alt="" class="img-fluid">
                   </div>
                 </div>
@@ -476,6 +486,8 @@
       </div>
 
     </section>
+
+    
     <!-- Faq Section -->
     <section id="faq" class="faq section">
 
@@ -549,6 +561,8 @@
       </div>
 
     </section>
+
+    
 <!-- Contact Section -->
     <section id="contact" class="contact section">
 
@@ -569,7 +583,7 @@
 
           <div class="col-lg-4">
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <i class="flex-shrink-0 bi bi-geo-alt"></i>
               <div>
                 <h3>Location</h3>
                 <p>Gwarzo Road, Bayero University Kano</p>
@@ -577,7 +591,7 @@
             </div><!-- End Info Item -->
 
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-telephone flex-shrink-0"></i>
+              <i class="flex-shrink-0 bi bi-telephone"></i>
               <div>
                 <h3>Call Us</h3>
                 <p>+234 9071777361</p>
@@ -585,7 +599,7 @@
             </div><!-- End Info Item -->
 
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-              <i class="bi bi-envelope flex-shrink-0"></i>
+              <i class="flex-shrink-0 bi bi-envelope"></i>
               <div>
                 <h3>Email Us</h3>
                 <p>info@eHealthCare.com</p>
@@ -614,7 +628,7 @@
                   <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
                 </div>
 
-                <div class="col-md-12 text-center">
+                <div class="text-center col-md-12">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
@@ -642,13 +656,13 @@
           <a href="index.html" class="logo d-flex align-items-center">
             <span class="sitename">eHealthCare</span>
           </a>
-          <div class="footer-contact pt-3">
+          <div class="pt-3 footer-contact">
             <p>Gwarzo Road</p>
             <p>Bayero University Kano</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+234 9071777361</span></p>
             <p><strong>Email:</strong> <span>info@eHealthCare.com</span></p>
           </div>
-          <div class="social-links d-flex mt-4">
+          <div class="mt-4 social-links d-flex">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
@@ -703,7 +717,7 @@
       </div>
     </div>
 
-    <div class="container copyright text-center mt-4">
+    <div class="container mt-4 text-center copyright">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">eHealthCare</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
       </div>
