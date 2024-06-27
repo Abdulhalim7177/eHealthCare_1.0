@@ -10,7 +10,6 @@
     <meta name="author" content="">
   <!-- Favicons -->
   <link href="assets/img/logo13.png" rel="icon">
-    <script src="./assets/backend/config.js"></script>
     <title>eHealthCare - Register</title>
 
     <link
@@ -19,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Backed script -->
+    <script src="./assets/backend/config.js"></script>
     <style>
         .spinner {
             display: none;
@@ -67,7 +69,9 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img src="./assets/img/departments-1.jpg" alt="" class="image w-100 m-3 text-left">
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -102,7 +106,7 @@
                                     Register Account
                                 </button>
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <a href="#" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
                             </form>
@@ -122,21 +126,23 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/vendor/jquery/jquery.min.js"></script>
+    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="./assets/js/sb-admin-2.min.js"></script>
 
 
     <!-- Include jQuery from a CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="./assets/vendor/jquery/jquery.min.js"></script> -->
+
 
     <!-- Backend Script -->
-     <script src="./assets/backend/register.js"></script>
+     <script defer async src="./assets/backend/register.js"></script>
 
 </body>
 
