@@ -36,51 +36,43 @@ $(document).ready(function() {
 
                 console.log(response);
                 alert('Login successful: ' + response.message);
+                
+                // clear application storage
+                localStorage.clear();
 
 
                 // Assuming the response contains the user data
                 localStorage.setItem('token', JSON.stringify(response.access_token));
                 localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem('role', JSON.stringify(response.data.roles || 'patients'));
                 localStorage.setItem('roles', JSON.stringify(response.data.roles));
-                localStorage.setItem('role', JSON.stringify(response.data.roles[0].role));
+                localStorage.setItem('auth_time', JSON.stringify(Date.now()));
 
 
+                // Hide the spinner
+                $('.overlay').hide(); 
 
                 // Redirect to dashboard
-                // window.location.href = `${app.url}/dashboard.html`;
-                // app.redirect("/patients/index.html", app.offline);
+                // window.location.href = `${app.url}/patients/index.html`;
+                app.redirect("/patients/index.html", app.offline);
 
-                // console.log(response);
-                // console.log(response.success);
-                // console.log(response.message);
-                // console.log(response.data);
-                // console.log(response.access_token);
+
 
             },
             error: function(error) {
 
                 // alert('Login failed: ' + error.responseText);
                 console.log(error);
-                alert('login failed: ' + error.responseJSON.message + "\n" 
-                    + error.responseJSON.error + "\n\t\n" + JSON.stringify(error.responseJSON.errors)
-                );
-
-                // console.log(error.responseJSON.success);
-                // console.log(error.responseJSON.message); 
-                // console.log(error.responseJSON.error);
-                // console.log(error.responseJSON.errors || error.responseJSON.error);
-
-                // console.log(JSON.stringify(error.responseJSON.message));
-
-
+                alert('login failed: ' + `${error.responseJSON.message } \n ${error.responseJSON.error}`);
 
             },
-            complete: function(e) {
+            complete: function() {
+
+                console.log('process complete');
+
                 // Hide the spinner
                 $('.overlay').hide(); 
 
-                console.log(e);
-                alert('Login complete: ' + e);    
             }
         });
     });
