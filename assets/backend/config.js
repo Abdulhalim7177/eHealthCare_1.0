@@ -6,13 +6,13 @@ const app = {}
 app.name = "eHealthCare";
 app.motto = "Bridging the gap between rural and urban healthcare!";
 
-// Live url
-// app.url = "https://e-healthcare-web.vercel.app";
-// app.apiUrl = "https://fellow-marcille-amtech-digital-4586c5e7.koyeb.app/api";
+// Live url uncomment before pushing to git
+app.url = "https://e-healthcare-web.vercel.app";
+app.apiUrl = "https://fellow-marcille-amtech-digital-4586c5e7.koyeb.app/api";
 
-// Local url
-app.url = "http://127.0.0.1:5500";
-app.apiUrl = "http://127.0.0.1:8000/api";
+// Local url comment before pushing to git
+// app.url = "http://127.0.0.1:5500";
+// app.apiUrl = "http://127.0.0.1:8000/api";
 
 
 app.token = JSON.parse(localStorage.getItem('token'));
