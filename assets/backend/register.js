@@ -4,9 +4,8 @@ console.log(`processing: ${app.url}/register.html`);
 
 $(document).ready(function() {
 
-    // clear application storage
-    app.clearStorage();
-    app.log(`${app.apiUrl}/register`);
+
+    console.log(`${app.apiUrl}/register`);
 
 
 
@@ -39,9 +38,12 @@ $(document).ready(function() {
             data: JSON.stringify(formData),
             success: function(response) {
 
-                console.log(response.data);
-                alert('Registration successful: ' + response.message);                                
-                alert('Registered user: ' + response.data);
+                console.log(response);
+                alert('Registration successful: ' + response.message);
+                
+                // clear application storage
+                localStorage.clear();
+
                 alert('Registered user role: ' + response.data.roles[0].role);
 
 
@@ -49,12 +51,15 @@ $(document).ready(function() {
                 localStorage.setItem('token', JSON.stringify(response.access_token));
                 localStorage.setItem('user', JSON.stringify(response.data));
                 localStorage.setItem('roles', JSON.stringify(response.data.roles));
+                localStorage.setItem('role', JSON.stringify(response.data.roles || 'patients'));
+                // localStorage.setItem('roles', JSON.stringify(response.data.roles));
                 localStorage.setItem('role', JSON.stringify(response.data.roles[0].role));
+                localStorage.setItem('auth_time', JSON.stringify(Date.now()));
+
 
 
 
                 // Redirect to dashboard
-                // window.location.href = `${app.url}/dashboard.html`;
                 app.redirect("/patients/index.html", app.offline);
 
                 // console.log(response);
@@ -67,9 +72,7 @@ $(document).ready(function() {
             error: function(error) {
 
                 // alert('Registration failed: ' + error.responseText);
-                alert('Registration failed: ' + error.responseJSON.message + "\n" 
-                    + error.responseJSON.error + "\n\t\n" + JSON.stringify(error.responseJSON.errors)
-                );
+                alert('Registration failed: ' + `${error.responseJSON.message } \n ${error.responseJSON.error }`);
 
                 // console.log(error.responseJSON.success);
                 // console.log(error.responseJSON.message); 
@@ -80,6 +83,8 @@ $(document).ready(function() {
 
             },
             complete: function() {
+                console.log('process complete');
+
                 // Hide the spinner
                 $('.overlay').hide(); 
             }
