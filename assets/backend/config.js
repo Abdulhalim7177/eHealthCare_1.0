@@ -5,26 +5,36 @@ const app = {}
 
 app.name = "eHealthCare";
 app.motto = "Bridging the gap between rural and urban healthcare!";
+
+// Live url uncomment before pushing to git
 app.url = "https://e-healthcare-web.vercel.app";
-// app.apiUrl = "https://fellow-marcille-amtech-digital-4586c5e7.koyeb.app/api";
-app.apiUrl = "http://127.0.0.1:8000/api";
+app.apiUrl = "https://fellow-marcille-amtech-digital-4586c5e7.koyeb.app/api";
+
+// Local url comment before pushing to git
+// app.url = "http://127.0.0.1:5500";
+// app.apiUrl = "http://127.0.0.1:8000/api";
 
 
-app.token = localStorage.getItem('token');
-app.user = localStorage.getItem('user');
-app.roles = localStorage.getItem('roles');
-app.role = localStorage.getItem('role');
+app.token = JSON.parse(localStorage.getItem('token'));
+app.user = JSON.parse(localStorage.getItem('user'));
+app.roles = JSON.parse(localStorage.getItem('roles'));
+app.role = JSON.parse(localStorage.getItem('role'));
+app.authTime = JSON.parse(localStorage.getItem('time'));
 
-app.clearStorage = ()=> {
 
-  console.log(`${app.apiUrl}`);
-  localStorage.setItem('token', "");
-  localStorage.setItem('user', "");
-  localStorage.setItem('roles', "");
-  localStorage.setItem('role', "");
-  console.log('local storage cleared!');
+// app.clearStorage = (()=> {
 
-}
+//   console.log(`${app.url}`);
+//   console.log(`${app.apiUrl}`);
+
+//   localStorage.setItem('token', "");
+//   localStorage.setItem('user', "");
+//   localStorage.setItem('roles', "");
+//   localStorage.setItem('role', "");
+//   localStorage.clear();
+//   console.log('local storage cleared!');
+
+// });
 
 
 app.offline = true;
