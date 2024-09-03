@@ -452,6 +452,15 @@ h6 {
     display: block;
   }
 }
+/* --------------------MAP CSS ------------------------------*/
+/* Map styling */
+#map {
+    width: 100%;
+    height: 500px;
+    display: none; /* Initially hidden */
+    margin-top: 20px;
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer
