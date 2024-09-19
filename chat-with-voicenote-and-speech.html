@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ChatBot | eHealthCare</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="hidden md:flex w-1/4 bg-gray-800 text-white p-4 flex-col">
+            <div class="font-bold text-lg mb-4">Medical Chat Assistant</div>
+            <ul>
+                <li class="mb-2 p-2 bg-gray-700 rounded-lg cursor-pointer">eHealthCare Chat Bot</li>
+            </ul>
+        </div>
+
+        <!-- Main chat area -->
+        <div class="flex flex-col w-full md:w-3/4 bg-white p-4">
+            <!-- Chat header -->
+            <div class="border-b pb-2 mb-4">
+                <h1 class="text-lg font-bold">eHealthCare Chat Bot</h1>
+                <p class="text-sm text-gray-500">2 messages</p>
+            </div>
+
+            <!-- Chat messages -->
+            <div class="flex-grow overflow-y-auto" id="chatContainer">
+                <!-- Example chat message with play button -->
+                <div class="flex items-center mb-4">
+                    <div class="bg-gray-100 p-4 rounded-lg flex-grow">Hello! How can I assist you today?</div>
+                    <button class="ml-2 p-2 bg-green-500 text-white rounded-full playBtn">▶</button>
+                </div>
+            </div>
+
+            <!-- Input field and voice input button -->
+            <div class="flex items-center border-t pt-4">
+                <input type="text" id="chatInput" placeholder="Enter to send..." class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <!-- Voice input button -->
+                <button id="voiceBtn" class="ml-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">🎤</button>
+                <button id="sendBtn" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Send button functionality
+        $(document).ready(function() {
+            $('#sendBtn').click(function() {
+                var message = $('#chatInput').val();
+                if (message) {
+                    // Append new message with play button
+                    $('#chatContainer').append(`
+                        <div class="flex items-center mb-4">
+                            <div class="bg-gray-100 p-4 rounded-lg flex-grow">${message}</div>
+                            <button class="ml-2 p-2 bg-green-500 text-white rounded-full playBtn">▶</button>
+                        </div>
+                    `);
+                    $('#chatInput').val('');
+                }
+            });
+
+            // Voice recognition functionality using Web Speech API
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            $('#voiceBtn').click(function() {
+                recognition.start();
+            });
+
+            recognition.onresult = function(event) {
+                const voiceMessage = event.results[0][0].transcript;
+                $('#chatInput').val(voiceMessage); // Set the recognized text to the input box
+            };
+
+            recognition.onspeechend = function() {
+                recognition.stop(); // Stop recognizing after the user stops speaking
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Error occurred in recognition: ' + event.error);
+            };
+
+            // Play message functionality using SpeechSynthesis API
+            $(document).on('click', '.playBtn', function() {
+                let message = $(this).siblings('div').text(); // Get the text of the message
+                let utterance = new SpeechSynthesisUtterance(message); // Create a speech synthesis utterance
+                window.speechSynthesis.speak(utterance); // Speak the message
+            });
+        });
+    </script>
+</body>
+</html>
