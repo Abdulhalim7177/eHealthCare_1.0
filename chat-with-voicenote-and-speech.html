@@ -10,10 +10,10 @@
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="hidden md:flex w-1/4 bg-gray-800 text-white p-4 flex-col">
-            <div class="font-bold text-lg mb-4">Medical Chat Assistant</div>
+        <div class="hidden md:flex w-1/4 bg-blue-500 text-white p-4 flex-col">
+            <div class="font-bold text-lg mb-4">eHealthCare</div>
             <ul>
-                <li class="mb-2 p-2 bg-gray-700 rounded-lg cursor-pointer">eHealthCare Chat Bot</li>
+                <li class="mb-2 p-2 bg-blue-800 rounded-lg cursor-pointer">English Chat Bot</li>
             </ul>
         </div>
 
@@ -22,16 +22,18 @@
             <!-- Chat header -->
             <div class="border-b pb-2 mb-4">
                 <h1 class="text-lg font-bold">eHealthCare Chat Bot</h1>
-                <p class="text-sm text-gray-500">2 messages</p>
+                <p class="text-sm text-gray-500">simplify and clarify your health!</p>
             </div>
 
             <!-- Chat messages -->
             <div class="flex-grow overflow-y-auto" id="chatContainer">
+
                 <!-- Example chat message with play button -->
                 <div class="flex items-center mb-4">
-                    <div class="bg-gray-100 p-4 rounded-lg flex-grow">Hello! How can I assist you today?</div>
+                    <div class="bg-green-100 p-4 rounded-lg flex-grow">Hello! How can I assist you today?</div>
                     <button class="ml-2 p-2 bg-green-500 text-white rounded-full playBtn">▶</button>
                 </div>
+
             </div>
 
             <!-- Input field and voice input button -->
@@ -39,12 +41,13 @@
                 <input type="text" id="chatInput" placeholder="Enter to send..." class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <!-- Voice input button -->
                 <button id="voiceBtn" class="ml-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">🎤</button>
-                <button id="sendBtn" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+                <button type="submit" id="sendBtn" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
             </div>
         </div>
     </div>
 
     <script>
+
         // Send button functionality
         $(document).ready(function() {
             $('#sendBtn').click(function() {
@@ -53,11 +56,14 @@
                     // Append new message with play button
                     $('#chatContainer').append(`
                         <div class="flex items-center mb-4">
-                            <div class="bg-gray-100 p-4 rounded-lg flex-grow">${message}</div>
+                            <div class="bg-gray-100 p-4 ml-8 rounded-lg flex-grow">${message}</div>
                             <button class="ml-2 p-2 bg-green-500 text-white rounded-full playBtn">▶</button>
                         </div>
                     `);
                     $('#chatInput').val('');
+
+                    askCohere(message);
+                    
                 }
             });
 
@@ -68,6 +74,7 @@
             recognition.maxAlternatives = 1;
 
             $('#voiceBtn').click(function() {
+                $('#chatInput').val('');
                 recognition.start();
             });
 
@@ -90,6 +97,50 @@
                 let utterance = new SpeechSynthesisUtterance(message); // Create a speech synthesis utterance
                 window.speechSynthesis.speak(utterance); // Speak the message
             });
+
+
+
+            // AI Chat Assistance
+            const apiKey = 'c1OBscvZCArHHp03xOUZceAqpwHHJlvFaKia8ZsC';
+            
+            function askCohere(question) {
+                question = `${question} make it short and simple`;
+                $.ajax({
+                    url: 'https://api.cohere.ai/generate',
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + apiKey,
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({
+                        "model": "command-xlarge-nightly",
+                        "prompt": question,
+                        "max_tokens": 100
+                    }),
+                    success: function(response) {
+                        console.log(response);
+                        // alert("Response from Cohere: " + response.text);
+                        // Replace special characters like ** with <strong>
+                        let formattedResponse = response.text
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to <strong>text</strong>
+                            .replace(/1\./g, '<li>') // Convert "1." to a list item
+                            .replace(/2\./g, '</li><li>') // Convert "2." to another list item
+                            .replace(/3\./g, '</li><li>') // Convert "3." to another list item
+                            + '</li>'; 
+
+                        $('#chatContainer').append(`
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-100 p-4 rounded-lg flex-grow">${formattedResponse}</div>
+                                <button class="ml-2 p-2 bg-green-500 text-white rounded-full playBtn">▶</button>
+                            </div>
+                        `);
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Error: " + error);
+                    }
+                });
+            }
+
         });
     </script>
 </body>
